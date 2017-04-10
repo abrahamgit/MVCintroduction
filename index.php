@@ -1,14 +1,19 @@
 // index.php
-$link = new PDO("mysql:host=localhost;dbname=blog_db", 'myuser', 'mypassword');
+// load and initialize any global libraries
 
-$result = $link->query('SELECT id, title FROM post');
+require_once 'model.php';
+require_once 'controllers.php';
 
-$posts = array();
-  while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-      $posts[] = $row;
-    }
+// route the request internally
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-      $link = null;
-
-// include the HTML presentation code
-require 'templates/list.php';
+if ('/index.php' === $uri) {
+    list_action();
+}
+elseif ('/index.php/show' === $uri && isset($_GET['id'])) {
+    show_action($_GET['id']);
+}
+else {
+    header('HTTP/1.1 404 Not Found');
+    echo '<html><body><h1>Page Not Found</h1></body></html>';
+}
