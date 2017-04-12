@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 / model.php
 function open_database_connection()
 {
@@ -20,4 +21,17 @@ function get_all_posts()
     }
     close_database_connection($link);
     return $posts;
+=======
+// model.php
+function get_post_by_id($id)
+{
+  $link = open_database_connection();
+  $query = 'SELECT created_at, title, body FROM post WHERE id=:id';
+  $statement = $link->prepare($query);
+  $statement->bindValue(':id', $id, PDO::PARAM_INT);
+  $statement->execute();
+  $row = $statement->fetch(PDO::FETCH_ASSOC);
+  close_database_connection($link);
+  return $row;
+>>>>>>> 4fec8af02c9ff5d9fefb5c4f23c69b29d796e539
 }
