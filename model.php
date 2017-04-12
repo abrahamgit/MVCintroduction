@@ -23,6 +23,7 @@ function get_all_posts()
     return $posts;
 =======
 // model.php
+//this is added comment
 function get_post_by_id($id)
 {
   $link = open_database_connection();

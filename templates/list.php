@@ -21,6 +21,7 @@
 </html>
 =======
 <!-- templates/list.php -->
+<!-- this is added commment -->
 <?php $title = 'List of Posts' ?>
 <?php ob_start() ?>
   <h1>List of Posts</h1>
