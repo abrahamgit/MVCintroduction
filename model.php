@@ -1,3 +1,27 @@
+<<<<<<< HEAD
+/ model.php
+function open_database_connection()
+{
+    $link = new PDO("mysql:host=localhost;dbname=blog_db", 'myuser', 'mypassword');
+    return $link;
+}
+
+function close_database_connection(&$link)
+{
+    $link = null;
+}
+
+function get_all_posts()
+{
+    $link = open_database_connection();
+    $result = $link->query('SELECT id, title FROM post');
+    $posts = array();
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $posts[] = $row;
+    }
+    close_database_connection($link);
+    return $posts;
+=======
 // model.php
 //this is added comment
 function get_post_by_id($id)
@@ -10,4 +34,5 @@ function get_post_by_id($id)
   $row = $statement->fetch(PDO::FETCH_ASSOC);
   close_database_connection($link);
   return $row;
+>>>>>>> 4fec8af02c9ff5d9fefb5c4f23c69b29d796e539
 }
